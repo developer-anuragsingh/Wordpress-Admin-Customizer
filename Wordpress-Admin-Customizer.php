@@ -41,7 +41,7 @@ define( 'PLUGIN_NAME_VERSION', '1.0.0' );
  * The code that runs during plugin activation.
  * This action is documented in includes/class-as-wp-admin-customization-activator.php
  */
-function activate_as_wp_admin_customization() {
+function activate_wp_admin_customizer() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-as-wp-admin-customization-activator.php';
 	As_Wp_Admin_Customization_Activator::activate();
 }
@@ -50,13 +50,13 @@ function activate_as_wp_admin_customization() {
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-as-wp-admin-customization-deactivator.php
  */
-function deactivate_as_wp_admin_customization() {
+function deactivate_wp_admin_customizer() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-as-wp-admin-customization-deactivator.php';
 	As_Wp_Admin_Customization_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_as_wp_admin_customization' );
-register_deactivation_hook( __FILE__, 'deactivate_as_wp_admin_customization' );
+register_activation_hook( __FILE__, 'activate_wp_admin_customizer' );
+register_deactivation_hook( __FILE__, 'deactivate_wp_admin_customizer' );
 
 /**
  * The core plugin class that is used to define internationalization,
@@ -73,10 +73,10 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-as-wp-admin-customization.
  *
  * @since    1.0.0
  */
-function run_as_wp_admin_customization() {
+function run_wp_admin_customizer() {
 
 	$plugin = new Wordpress_Admin_Customizer();
 	$plugin->run();
 
 }
-run_as_wp_admin_customization();
+run_wp_admin_customizer();

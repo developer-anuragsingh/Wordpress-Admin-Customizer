@@ -182,12 +182,12 @@ class Wordpress_Admin_Customizer {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Wordpress_Admin_Customizer_Admin( $this->get_as_wp_admin_customization(), $this->get_version(), $this->parent_menu_title );
+		$plugin_admin = new Wordpress_Admin_Customizer_Admin( $this->get_wp_admin_customizer(), $this->get_version(), $this->parent_menu_title );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
-		$plugin_admin_login_screen = new As_Wp_Admin_Customization_Admin_Login_Screen( $this->get_as_wp_admin_customization(), $this->get_version(), $this->parent_menu_title );
+		$plugin_admin_login_screen = new As_Wp_Admin_Customization_Admin_Login_Screen( $this->get_wp_admin_customizer(), $this->get_version(), $this->parent_menu_title );
 		// $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin_login_screen, 'enqueue_login_screen_styles' );
 
 		// Add stylesheet for login screen
@@ -262,7 +262,7 @@ class Wordpress_Admin_Customizer {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new As_Wp_Admin_Customization_Public( $this->get_as_wp_admin_customization(), $this->get_version() );
+		$plugin_public = new As_Wp_Admin_Customization_Public( $this->get_wp_admin_customizer(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
@@ -352,7 +352,7 @@ class Wordpress_Admin_Customizer {
 	 * @since     1.0.0
 	 * @return    string    The name of the plugin.
 	 */
-	public function get_as_wp_admin_customization() {
+	public function get_wp_admin_customizer() {
 		return $this->as_wp_admin_customization;
 	}
 
