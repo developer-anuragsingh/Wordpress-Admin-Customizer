@@ -1,2 +1,2 @@
 # Wordpress-Admin-Customizer
-Customize wordpress website's admin area.
+Plugin to remove extra content from website's admin area.
