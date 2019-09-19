@@ -40,6 +40,7 @@ class Wordpress_Admin_Customizer_Admin {
 	 */
 	private $version;
 
+	private $parent_menu_title;
 	/**
 	 * Initialize the class and set its properties.
 	 *
@@ -47,10 +48,11 @@ class Wordpress_Admin_Customizer_Admin {
 	 * @param      string    $Wordpress_Admin_Customizer       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $Wordpress_Admin_Customizer, $version ) {
+	public function __construct( $Wordpress_Admin_Customizer, $version, $parent_menu_title ) {
 
-		$Wordpress_Admin_Customizer = $Wordpress_Admin_Customizer;
+		$this->Wordpress_Admin_Customizer = $Wordpress_Admin_Customizer;
 		$this->version = $version;
+		$this->parent_menu_title = $parent_menu_title;;
 
 		// add menu, sub-menu & tabs
 		$parentMenu = $this->setup_parent_menu();
@@ -136,12 +138,10 @@ class Wordpress_Admin_Customizer_Admin {
 	 * @since    1.0.0
 	 */
 	public function setup_parent_menu() {
-		$parent_menu_title 	= 'Admin UI';
-
 		// Custom WordPress Parent Menu
 		$parentMenu = new WordPressMenu( array(
-			'title' => $parent_menu_title,
-			'slug' 	=> sanitize_title( $parent_menu_title ),
+			'title' => $this->parent_menu_title,
+			'slug' 	=> sanitize_title( $this->parent_menu_title ),
 			'desc' 	=> 'Settings for admin area.',
 			'icon' 	=> 'dashicons-welcome-widgets-menus',
 			'position' => 99,
@@ -170,11 +170,6 @@ class Wordpress_Admin_Customizer_Admin {
 		$postTypeArr = array_merge($postTypeArr, array('all'=>'all')); 		// add 'all' as an option
 		$postTypeOptions = array_map(array($this, 'sanitize_text'), $postTypeArr);
 
-		// echo '<pre>';
-		// print_r($postTypeOptions);
-		// Get all the post types of website
-
-
 		//Add a field
 		$parentMenu->add_field(array(
 			'title' => $site_favicon,
@@ -193,8 +188,8 @@ class Wordpress_Admin_Customizer_Admin {
 			'desc' => "Remove wordpress logo from TLS.",
 			'type' => 'radio',
 			'options' => array(
-				TRUE => 'Yes',
-				FALSE => 'No' )
+				FALSE => 'No',
+				TRUE => 'Yes')
 		));
 
 		// Add a field

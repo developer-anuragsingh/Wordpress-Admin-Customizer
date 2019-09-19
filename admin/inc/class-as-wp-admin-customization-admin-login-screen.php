@@ -3,7 +3,7 @@
 /**
  * The login screen specific functionality of the plugin.
  *
- * @link       http://anuragsingh.me
+ * @link       http://anurag-singh.github.io/
  * @since      1.0.0
  *
  * @package    Wordpress_Admin_Customizer
@@ -56,14 +56,11 @@ class As_Wp_Admin_Customization_Admin_Login_Screen {
 	 * @param      string    $as_wp_admin_customization       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $as_wp_admin_customization, $version ) {
-
+	public function __construct( $as_wp_admin_customization, $version, $parent_menu_title ) {
+		
 		$this->as_wp_admin_customization = $as_wp_admin_customization;
 		$this->version = $version;
-		$this->option_name = get_site_option('admin-customization');
-
-
-
+		$this->option_name = get_site_option(sanitize_title($parent_menu_title));  // assign field name to fetch database values
 
 	}
 

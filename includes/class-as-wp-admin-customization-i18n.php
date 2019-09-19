@@ -6,7 +6,7 @@
  * Loads and defines the internationalization files for this plugin
  * so that it is ready for translation.
  *
- * @link       http://anuragsingh.me
+ * @link       http://anurag-singh.github.io/
  * @since      1.0.0
  *
  * @package    Wordpress_Admin_Customizer

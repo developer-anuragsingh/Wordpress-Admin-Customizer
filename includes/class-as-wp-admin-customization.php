@@ -7,7 +7,7 @@
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the admin area.
  *
- * @link       http://anuragsingh.me
+ * @link       http://anurag-singh.github.io/
  * @since      1.0.0
  *
  * @package    Wordpress_Admin_Customizer
@@ -74,6 +74,7 @@ class Wordpress_Admin_Customizer {
 			$this->version = '1.0.0';
 		}
 		$this->as_wp_admin_customization = 'as-wp-admin-customization';
+		$this->parent_menu_title = 'Admin Customizer';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -181,13 +182,12 @@ class Wordpress_Admin_Customizer {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Wordpress_Admin_Customizer_Admin( $this->get_as_wp_admin_customization(), $this->get_version() );
+		$plugin_admin = new Wordpress_Admin_Customizer_Admin( $this->get_as_wp_admin_customization(), $this->get_version(), $this->parent_menu_title );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
-
-		$plugin_admin_login_screen = new As_Wp_Admin_Customization_Admin_Login_Screen( $this->get_as_wp_admin_customization(), $this->get_version() );
+		$plugin_admin_login_screen = new As_Wp_Admin_Customization_Admin_Login_Screen( $this->get_as_wp_admin_customization(), $this->get_version(), $this->parent_menu_title );
 		// $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin_login_screen, 'enqueue_login_screen_styles' );
 
 		// Add stylesheet for login screen
@@ -216,7 +216,6 @@ class Wordpress_Admin_Customizer {
 
 		// Add extra content in footer of wp login screen
 		$this->loader->add_action('login_footer', $plugin_admin_login_screen, 'login_form_footer');
-
 
 		// Remove WP logo from wp user's area
 		$this->loader->add_action( 'admin_bar_menu', $plugin_admin_login_screen, 'remove_wp_logo_from_admin_screen', 999 );
