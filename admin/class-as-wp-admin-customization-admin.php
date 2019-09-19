@@ -136,13 +136,13 @@ class Wordpress_Admin_Customizer_Admin {
 	 * @since    1.0.0
 	 */
 	public function setup_parent_menu() {
-		$parent_menu_title 	= 'Admin Customization';
+		$parent_menu_title 	= 'Admin UI';
 
 		// Custom WordPress Parent Menu
 		$parentMenu = new WordPressMenu( array(
 			'title' => $parent_menu_title,
 			'slug' 	=> sanitize_title( $parent_menu_title ),
-			'desc' 	=> 'Settings for theme custom WordPress Menu',
+			'desc' 	=> 'Settings for admin area.',
 			'icon' 	=> 'dashicons-welcome-widgets-menus',
 			'position' => 99,
 		));
